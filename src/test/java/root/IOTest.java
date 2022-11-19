@@ -43,7 +43,7 @@ public class IOTest {
 
     @Before
     public void setup() throws IOException {
-        tempFile = File.createTempFile("test", "Data");
+        tempFile = Files.createTempFile("test", "Data").toFile();
         Files.write(tempFile.toPath(), CONTENT.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 

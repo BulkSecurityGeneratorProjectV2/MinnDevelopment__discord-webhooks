@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -126,7 +127,7 @@ public class MessageTest {
 
     @Test
     public void buildMessageWithFiles() throws IOException {
-        File tmp = File.createTempFile("message-test", "cat.png");
+        File tmp = Files.createTempFile("message-test", "cat.png").toFile();
         builder.addFile(tmp);
         builder.addFile("dog.png", new FileInputStream(tmp));
         builder.addFile("bird.png", IOUtil.readAllBytes(new FileInputStream(tmp)));
@@ -202,7 +203,7 @@ public class MessageTest {
 
     @Test
     public void factoryFiles() throws IOException {
-        File tmp = File.createTempFile("message-test", "cat.png");
+        File tmp = Files.createTempFile("message-test", "cat.png").toFile();
         WebhookMessage.files(
                 "cat.png", tmp,
                 "dog.png", new FileInputStream(tmp),
